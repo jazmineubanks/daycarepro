@@ -1,0 +1,150 @@
+<div>
+  <div>
+    <h1>
+      List of all users
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new user
+    </h2>
+
+    <form action="/insert_user" method="post">
+      <div>
+        <label for="email_box">
+          Email
+        </label>
+
+        <input type="text" id="email_box" name="query_email">
+      </div>
+
+      <div>
+        <label for="password_box">
+          Password
+        </label>
+
+        <input type="text" id="password_box" name="query_password">
+      </div>
+
+      <div>
+        <label for="first_name_box">
+          First name
+        </label>
+
+        <input type="text" id="first_name_box" name="query_first_name">
+      </div>
+
+      <div>
+        <label for="last_name_box">
+          Last name
+        </label>
+
+        <input type="text" id="last_name_box" name="query_last_name">
+      </div>
+
+      <div>
+        <label for="role_box">
+          Role
+        </label>
+
+        <input type="text" id="role_box" name="query_role">
+      </div>
+
+      <button>
+        Create user
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Email
+        </th>
+
+        <th>
+          Password
+        </th>
+
+        <th>
+          First name
+        </th>
+
+        <th>
+          Last name
+        </th>
+
+        <th>
+          Role
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_users.each do |a_user| %>
+      <tr>
+        <td>
+          <%= a_user.id %>
+        </td>
+
+        <td>
+          <%= a_user.email %>
+        </td>
+
+        <td>
+          <%= a_user.password %>
+        </td>
+
+        <td>
+          <%= a_user.first_name %>
+        </td>
+
+        <td>
+          <%= a_user.last_name %>
+        </td>
+
+        <td>
+          <%= a_user.role %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_user.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_user.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/users/<%= a_user.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

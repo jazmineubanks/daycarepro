@@ -1,0 +1,117 @@
+<div>
+  <div>
+    <h1>
+      Mass email #<%= @the_mass_email.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/mass_emails">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_mass_email/<%= @the_mass_email.id %>">
+          Delete mass email
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Admin
+      </dt>
+      <dd>
+        <%= @the_mass_email.admin_id %>
+      </dd>
+
+      <dt>
+        Subject
+      </dt>
+      <dd>
+        <%= @the_mass_email.subject %>
+      </dd>
+
+      <dt>
+        Context
+      </dt>
+      <dd>
+        <%= @the_mass_email.context %>
+      </dd>
+
+      <dt>
+        Sent at
+      </dt>
+      <dd>
+        <%= @the_mass_email.sent_at %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_mass_email.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_mass_email.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit mass email
+    </h2>
+
+    <form action="/modify_mass_email/<%= @the_mass_email.id %>"  method="post" >
+      <div>
+        <label for="admin_id_box">
+          Admin
+        </label>
+
+        <input type="text" id="admin_id_box" name="query_admin_id" value="<%= @the_mass_email.admin_id %>">
+      </div>
+
+      <div>
+        <label for="subject_box">
+          Subject
+        </label>
+
+        <input type="text" id="subject_box" name="query_subject" value="<%= @the_mass_email.subject %>">
+      </div>
+
+      <div>
+        <label for="context_box">
+          Context
+        </label>
+
+        <textarea id="context_box" name="query_context"><%= @the_mass_email.context %></textarea>
+      </div>
+
+      <div>
+        <label for="sent_at_box">
+          Sent at
+        </label>
+
+        <input type="datetime-local" id="sent_at_box" name="query_sent_at"
+         value="<%= @the_mass_email.sent_at %>">
+      </div>
+
+      <button>
+        Update mass email
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

@@ -1,0 +1,103 @@
+<div>
+  <div>
+    <h1>
+      Attendance record #<%= @the_attendance_record.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/attendance_records">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_attendance_record/<%= @the_attendance_record.id %>">
+          Delete attendance record
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Child
+      </dt>
+      <dd>
+        <%= @the_attendance_record.child_id %>
+      </dd>
+
+      <dt>
+        Check in time
+      </dt>
+      <dd>
+        <%= @the_attendance_record.check_in_time %>
+      </dd>
+
+      <dt>
+        Check out time
+      </dt>
+      <dd>
+        <%= @the_attendance_record.check_out_time %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_attendance_record.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_attendance_record.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit attendance record
+    </h2>
+
+    <form action="/modify_attendance_record/<%= @the_attendance_record.id %>"  method="post" >
+      <div>
+        <label for="child_id_box">
+          Child
+        </label>
+
+        <input type="text" id="child_id_box" name="query_child_id" value="<%= @the_attendance_record.child_id %>">
+      </div>
+
+      <div>
+        <label for="check_in_time_box">
+          Check in time
+        </label>
+
+        <input type="datetime-local" id="check_in_time_box" name="query_check_in_time"
+         value="<%= @the_attendance_record.check_in_time %>">
+      </div>
+
+      <div>
+        <label for="check_out_time_box">
+          Check out time
+        </label>
+
+        <input type="datetime-local" id="check_out_time_box" name="query_check_out_time"
+         value="<%= @the_attendance_record.check_out_time %>">
+      </div>
+
+      <button>
+        Update attendance record
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Note #<%= @the_note.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/notes">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_note/<%= @the_note.id %>">
+          Delete note
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Child
+      </dt>
+      <dd>
+        <%= @the_note.child_id %>
+      </dd>
+
+      <dt>
+        Admin
+      </dt>
+      <dd>
+        <%= @the_note.admin_id %>
+      </dd>
+
+      <dt>
+        Context
+      </dt>
+      <dd>
+        <%= @the_note.context %>
+      </dd>
+
+      <dt>
+        Submitted
+      </dt>
+      <dd>
+        <%= @the_note.submitted %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_note.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_note.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit note
+    </h2>
+
+    <form action="/modify_note/<%= @the_note.id %>"  method="post" >
+      <div>
+        <label for="child_id_box">
+          Child
+        </label>
+
+        <input type="text" id="child_id_box" name="query_child_id" value="<%= @the_note.child_id %>">
+      </div>
+
+      <div>
+        <label for="admin_id_box">
+          Admin
+        </label>
+
+        <input type="text" id="admin_id_box" name="query_admin_id" value="<%= @the_note.admin_id %>">
+      </div>
+
+      <div>
+        <label for="context_box">
+          Context
+        </label>
+
+        <textarea id="context_box" name="query_context"><%= @the_note.context %></textarea>
+      </div>
+
+      <div>
+        <input type="checkbox" id="submitted_box" name="query_submitted" value="1" <%= "checked" if @the_note.submitted %>>
+
+        <label for="submitted_box">
+            Submitted
+        </label>
+      </div>
+
+      <button>
+        Update note
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

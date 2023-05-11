@@ -1,0 +1,118 @@
+<div>
+  <div>
+    <h1>
+      List of all attendance records
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new attendance record
+    </h2>
+
+    <form action="/insert_attendance_record" method="post">
+      <div>
+        <label for="child_id_box">
+          Child
+        </label>
+
+        <input type="text" id="child_id_box" name="query_child_id">
+      </div>
+
+      <div>
+        <label for="check_in_time_box">
+          Check in time
+        </label>
+
+        <input type="datetime-local" id="check_in_time_box" name="query_check_in_time">
+      </div>
+
+      <div>
+        <label for="check_out_time_box">
+          Check out time
+        </label>
+
+        <input type="datetime-local" id="check_out_time_box" name="query_check_out_time">
+      </div>
+
+      <button>
+        Create attendance record
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Child
+        </th>
+
+        <th>
+          Check in time
+        </th>
+
+        <th>
+          Check out time
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_attendance_records.each do |an_attendance_record| %>
+      <tr>
+        <td>
+          <%= an_attendance_record.id %>
+        </td>
+
+        <td>
+          <%= an_attendance_record.child_id %>
+        </td>
+
+        <td>
+          <%= an_attendance_record.check_in_time %>
+        </td>
+
+        <td>
+          <%= an_attendance_record.check_out_time %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_attendance_record.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_attendance_record.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/attendance_records/<%= an_attendance_record.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

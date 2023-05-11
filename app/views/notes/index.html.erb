@@ -1,0 +1,132 @@
+<div>
+  <div>
+    <h1>
+      List of all notes
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new note
+    </h2>
+
+    <form action="/insert_note" method="post">
+      <div>
+        <label for="child_id_box">
+          Child
+        </label>
+
+        <input type="text" id="child_id_box" name="query_child_id">
+      </div>
+
+      <div>
+        <label for="admin_id_box">
+          Admin
+        </label>
+
+        <input type="text" id="admin_id_box" name="query_admin_id">
+      </div>
+
+      <div>
+        <label for="context_box">
+          Context
+        </label>
+
+        <textarea id="context_box" name="query_context" rows="3"></textarea>
+      </div>
+
+      <div>
+        <input type="checkbox" id="submitted_box" name="query_submitted" value="1">
+
+        <label for="submitted_box">Submitted</label>
+      </div>
+
+      <button>
+        Create note
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Child
+        </th>
+
+        <th>
+          Admin
+        </th>
+
+        <th>
+          Context
+        </th>
+
+        <th>
+          Submitted
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_notes.each do |a_note| %>
+      <tr>
+        <td>
+          <%= a_note.id %>
+        </td>
+
+        <td>
+          <%= a_note.child_id %>
+        </td>
+
+        <td>
+          <%= a_note.admin_id %>
+        </td>
+
+        <td>
+          <%= a_note.context %>
+        </td>
+
+        <td>
+          <%= a_note.submitted %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_note.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_note.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/notes/<%= a_note.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
