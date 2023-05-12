@@ -16,13 +16,15 @@
 
 <%= stylesheet_link_tag 'application', media: 'all' %>
 
+
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
 
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light ">
   <a class="navbar-brand" href="/">Home</a>
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
@@ -66,3 +68,48 @@
     <%= yield %>
   </body>
 </html>
+
+<style>
+      /* Color palette */
+      :root {
+        --primary-color: #CEE5D0;
+        --secondary-color: #AC7D88;
+        --tertiary-color: #FCDDB0;
+        --quaternary-color: #85586F;
+      }
+
+      body {
+        background-color: var(--primary-color);
+        color: var(--quaternary-color);
+      }
+
+      .navbar {
+        background-color: var(--secondary-color);
+      }
+
+      .navbar-brand,
+      .nav-link {
+        color: var(--quaternary-color);
+      }
+
+      .navbar-brand:hover,
+      .nav-link:hover {
+        color: var(--tertiary-color);
+      }
+
+      .navbar-collapse {
+        justify-content: flex-end;
+      }
+
+      .nav-item {
+        margin-right: 10px;
+      }
+
+      .btn {
+      background-color: #AC7D88;
+      color: #ffffff;
+      padding: 5px 12px;
+      font-size: 18px;
+      margin: 8px 0;
+}
+    </style>
