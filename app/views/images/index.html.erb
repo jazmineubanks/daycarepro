@@ -1,117 +1,74 @@
-<div>
-  <div>
-    <h1>
-      List of all images
-    </h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>List of all images</h1>
+    </div>
   </div>
 </div>
 
 <hr>
 
-<div>
-  <div>
-    <h2>
-      Add a new image
-    </h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Add a new image</h2>
 
-    <form action="/insert_image" method="post">
-      <div>
-        <label for="child_id_box">
-          Child
-        </label>
+      <form action="/insert_image" method="post">
+        <div class="mb-3">
+          <label for="child_id_box" class="form-label">Child</label>
+          <input type="text" class="form-control" id="child_id_box" name="query_child_id">
+        </div>
 
-        <input type="text" id="child_id_box" name="query_child_id">
-      </div>
+        <div class="mb-3">
+          <label for="image_url_box" class="form-label">Image URL</label>
+          <input type="text" class="form-control" id="image_url_box" name="query_image_url">
+        </div>
 
-      <div>
-        <label for="image_url_box">
-          Image url
-        </label>
+        <div class="mb-3">
+          <label for="description_box" class="form-label">Description</label>
+          <input type="text" class="form-control" id="description_box" name="query_description">
+        </div>
 
-        <input type="text" id="image_url_box" name="query_image_url">
-      </div>
-
-      <div>
-        <label for="description_box">
-          Description
-        </label>
-
-        <input type="text" id="description_box" name="query_description">
-      </div>
-
-      <button>
-        Create image
-      </button>
-    </form>
+        <button type="submit" class="btn btn-primary">Create image</button>
+      </form>
+    </div>
   </div>
 </div>
 
 <hr>
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
 
-        <th>
-          Child
-        </th>
-
-        <th>
-          Image url
-        </th>
-
-        <th>
-          Description
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_images.each do |an_image| %>
-      <tr>
-        <td>
-          <%= an_image.id %>
-        </td>
-
-        <td>
-          <%= an_image.child_id %>
-        </td>
-
-        <td>
-          <%= an_image.image_url %>
-        </td>
-
-        <td>
-          <%= an_image.description %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(an_image.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(an_image.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/images/<%= an_image.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Child</th>
+            <th>Image URL</th>
+            <th>Description</th>
+            <th>Created at</th>
+            <th>Updated at</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @list_of_images.each do |an_image| %>
+          <tr>
+            <td><%= an_image.id %></td>
+            <td><%= an_image.child_id %></td>
+            <td><%= an_image.image_url %></td>
+            <td><%= an_image.description %></td>
+            <td><%= time_ago_in_words(an_image.created_at) %> ago</td>
+            <td><%= time_ago_in_words(an_image.updated_at) %> ago</td>
+            <td>
+              <a href="/images/<%= an_image.id %>">Show details</a>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 

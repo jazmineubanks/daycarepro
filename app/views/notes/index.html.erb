@@ -1,131 +1,81 @@
-<div>
-  <div>
-    <h1>
-      List of all notes
-    </h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>List of all notes</h1>
+    </div>
   </div>
 </div>
 
 <hr>
 
-<div>
-  <div>
-    <h2>
-      Add a new note
-    </h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Add a new note</h2>
 
-    <form action="/insert_note" method="post">
-      <div>
-        <label for="child_id_box">
-          Child
-        </label>
+      <form action="/insert_note" method="post">
+        <div class="mb-3">
+          <label for="child_id_box" class="form-label">Child</label>
+          <input type="text" class="form-control" id="child_id_box" name="query_child_id">
+        </div>
 
-        <input type="text" id="child_id_box" name="query_child_id">
-      </div>
+        <div class="mb-3">
+          <label for="admin_id_box" class="form-label">Admin</label>
+          <input type="text" class="form-control" id="admin_id_box" name="query_admin_id">
+        </div>
 
-      <div>
-        <label for="admin_id_box">
-          Admin
-        </label>
+        <div class="mb-3">
+          <label for="context_box" class="form-label">Context</label>
+          <textarea class="form-control" id="context_box" name="query_context" rows="3"></textarea>
+        </div>
 
-        <input type="text" id="admin_id_box" name="query_admin_id">
-      </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="submitted_box" name="query_submitted" value="1">
+          <label class="form-check-label" for="submitted_box">Submitted</label>
+        </div>
 
-      <div>
-        <label for="context_box">
-          Context
-        </label>
-
-        <textarea id="context_box" name="query_context" rows="3"></textarea>
-      </div>
-
-      <div>
-        <input type="checkbox" id="submitted_box" name="query_submitted" value="1">
-
-        <label for="submitted_box">Submitted</label>
-      </div>
-
-      <button>
-        Create note
-      </button>
-    </form>
+        <button type="submit" class="btn btn-primary">Create note</button>
+      </form>
+    </div>
   </div>
 </div>
 
 <hr>
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
 
-        <th>
-          Child
-        </th>
-
-        <th>
-          Admin
-        </th>
-
-        <th>
-          Context
-        </th>
-
-        <th>
-          Submitted
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_notes.each do |a_note| %>
-      <tr>
-        <td>
-          <%= a_note.id %>
-        </td>
-
-        <td>
-          <%= a_note.child_id %>
-        </td>
-
-        <td>
-          <%= a_note.admin_id %>
-        </td>
-
-        <td>
-          <%= a_note.context %>
-        </td>
-
-        <td>
-          <%= a_note.submitted %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_note.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_note.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/notes/<%= a_note.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Child</th>
+            <th>Admin</th>
+            <th>Context</th>
+            <th>Submitted</th>
+            <th>Created at</th>
+            <th>Updated at</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @list_of_notes.each do |a_note| %>
+          <tr>
+            <td><%= a_note.id %></td>
+            <td><%= a_note.child_id %></td>
+            <td><%= a_note.admin_id %></td>
+            <td><%= a_note.context %></td>
+            <td><%= a_note.submitted %></td>
+            <td><%= time_ago_in_words(a_note.created_at) %> ago</td>
+            <td><%= time_ago_in_words(a_note.updated_at) %> ago</td>
+            <td>
+              <a href="/notes/<%= a_note.id %>">Show details</a>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 

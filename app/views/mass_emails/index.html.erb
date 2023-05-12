@@ -1,133 +1,81 @@
-<div>
-  <div>
-    <h1>
-      List of all mass emails
-    </h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>List of all mass emails</h1>
+    </div>
   </div>
 </div>
 
 <hr>
 
-<div>
-  <div>
-    <h2>
-      Add a new mass email
-    </h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Add a new mass email</h2>
 
-    <form action="/insert_mass_email" method="post">
-      <div>
-        <label for="admin_id_box">
-          Admin
-        </label>
+      <form action="/insert_mass_email" method="post">
+        <div class="mb-3">
+          <label for="admin_id_box" class="form-label">Admin</label>
+          <input type="text" class="form-control" id="admin_id_box" name="query_admin_id">
+        </div>
 
-        <input type="text" id="admin_id_box" name="query_admin_id">
-      </div>
+        <div class="mb-3">
+          <label for="subject_box" class="form-label">Subject</label>
+          <input type="text" class="form-control" id="subject_box" name="query_subject">
+        </div>
 
-      <div>
-        <label for="subject_box">
-          Subject
-        </label>
+        <div class="mb-3">
+          <label for="context_box" class="form-label">Context</label>
+          <textarea class="form-control" id="context_box" name="query_context" rows="3"></textarea>
+        </div>
 
-        <input type="text" id="subject_box" name="query_subject">
-      </div>
+        <div class="mb-3">
+          <label for="sent_at_box" class="form-label">Sent at</label>
+          <input type="datetime-local" class="form-control" id="sent_at_box" name="query_sent_at">
+        </div>
 
-      <div>
-        <label for="context_box">
-          Context
-        </label>
-
-        <textarea id="context_box" name="query_context" rows="3"></textarea>
-      </div>
-
-      <div>
-        <label for="sent_at_box">
-          Sent at
-        </label>
-
-        <input type="datetime-local" id="sent_at_box" name="query_sent_at">
-      </div>
-
-      <button>
-        Create mass email
-      </button>
-    </form>
+        <button type="submit" class="btn btn-primary">Create mass email</button>
+      </form>
+    </div>
   </div>
 </div>
 
 <hr>
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
 
-        <th>
-          Admin
-        </th>
-
-        <th>
-          Subject
-        </th>
-
-        <th>
-          Context
-        </th>
-
-        <th>
-          Sent at
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_mass_emails.each do |a_mass_email| %>
-      <tr>
-        <td>
-          <%= a_mass_email.id %>
-        </td>
-
-        <td>
-          <%= a_mass_email.admin_id %>
-        </td>
-
-        <td>
-          <%= a_mass_email.subject %>
-        </td>
-
-        <td>
-          <%= a_mass_email.context %>
-        </td>
-
-        <td>
-          <%= a_mass_email.sent_at %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_mass_email.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_mass_email.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/mass_emails/<%= a_mass_email.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Admin</th>
+            <th>Subject</th>
+            <th>Context</th>
+            <th>Sent at</th>
+            <th>Created at</th>
+            <th>Updated at</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @list_of_mass_emails.each do |a_mass_email| %>
+          <tr>
+            <td><%= a_mass_email.id %></td>
+            <td><%= a_mass_email.admin_id %></td>
+            <td><%= a_mass_email.subject %></td>
+            <td><%= a_mass_email.context %></td>
+            <td><%= a_mass_email.sent_at %></td>
+            <td><%= time_ago_in_words(a_mass_email.created_at) %> ago</td>
+            <td><%= time_ago_in_words(a_mass_email.updated_at) %> ago</td>
+            <td>
+              <a href="/mass_emails/<%= a_mass_email.id %>">Show details</a>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 
