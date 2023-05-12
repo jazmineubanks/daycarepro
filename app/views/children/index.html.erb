@@ -1,53 +1,49 @@
-<div>
+<div class="container">
   <div>
     <h1>
-      List of all children
+      List of Children
     </h1>
   </div>
 </div>
 
 <hr>
 
-<div>
+<div class="container">
   <div>
     <h2>
-      Add a new child
+      Add New Child
     </h2>
 
     <form action="/insert_child" method="post">
-      <div>
-        <label for="first_name_box">
+      <div class="mb-3">
+        <label for="first_name_box" class="form-label">
           First name
         </label>
-
-        <input type="text" id="first_name_box" name="query_first_name">
+        <input type="text" id="first_name_box" name="query_first_name" class="form-control">
       </div>
 
-      <div>
-        <label for="last_name_box">
+      <div class="mb-3">
+        <label for="last_name_box" class="form-label">
           Last name
         </label>
-
-        <input type="text" id="last_name_box" name="query_last_name">
+        <input type="text" id="last_name_box" name="query_last_name" class="form-control">
       </div>
 
-      <div>
-        <label for="date_of_birth_box">
+      <div class="mb-3">
+        <label for="date_of_birth_box" class="form-label">
           Date of birth
         </label>
-
-        <input type="text" id="date_of_birth_box" name="query_date_of_birth">
+        <input type="text" id="date_of_birth_box" name="query_date_of_birth" class="form-control">
       </div>
 
-      <div>
-        <label for="parent_id_box">
+      <div class="mb-3">
+        <label for="parent_id_box" class="form-label">
           Parent
         </label>
-
-        <input type="text" id="parent_id_box" name="query_parent_id">
+        <input type="text" id="parent_id_box" name="query_parent_id" class="form-control">
       </div>
 
-      <button>
+      <button type="submit" class="btn btn-primary">
         Create child
       </button>
     </form>
@@ -55,78 +51,40 @@
 </div>
 
 <hr>
-<div>
+
+<div class="container">
   <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          First name
-        </th>
-
-        <th>
-          Last name
-        </th>
-
-        <th>
-          Date of birth
-        </th>
-
-        <th>
-          Parent
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_children.each do |a_child| %>
-      <tr>
-        <td>
-          <%= a_child.id %>
-        </td>
-
-        <td>
-          <%= a_child.first_name %>
-        </td>
-
-        <td>
-          <%= a_child.last_name %>
-        </td>
-
-        <td>
-          <%= a_child.date_of_birth %>
-        </td>
-
-        <td>
-          <%= a_child.parent_id %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_child.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_child.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/children/<%= a_child.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Date of birth</th>
+          <th>Parent</th>
+          <th>Created at</th>
+          <th>Updated at</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @list_of_children.each do |a_child| %>
+        <tr>
+          <td><%= a_child.id %></td>
+          <td><%= a_child.first_name %></td>
+          <td><%= a_child.last_name %></td>
+          <td><%= a_child.date_of_birth %></td>
+          <td><%= a_child.parent_id %></td>
+          <td><%= time_ago_in_words(a_child.created_at) %> ago</td>
+          <td><%= time_ago_in_words(a_child.updated_at) %> ago</td>
+          <td>
+            <a href="/children/<%= a_child.id %>" class="btn btn-primary">
+              Show details
+            </a>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
     </table>
   </div>
 </div>
