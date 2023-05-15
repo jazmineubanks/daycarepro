@@ -57,11 +57,11 @@
     <table class="table">
       <thead>
         <tr>
-          <th>ID</th>
+          <th style="display: none;">ID</th>
           <th>First name</th>
           <th>Last name</th>
           <th>Date of birth</th>
-          <th>Parent</th>
+          <th style="display: none;">Parent</th>
           <th>Created at</th>
           <th>Updated at</th>
           <th></th>
@@ -70,17 +70,18 @@
       <tbody>
         <% @list_of_children.each do |a_child| %>
         <tr>
-          <td><%= a_child.id %></td>
+          <td style="display: none;"><%= a_child.id %></td>
           <td><%= a_child.first_name %></td>
           <td><%= a_child.last_name %></td>
           <td><%= a_child.date_of_birth %></td>
-          <td><%= a_child.parent_id %></td>
+          <td style="display: none;"><%= a_child.parent_id %></td>
           <td><%= time_ago_in_words(a_child.created_at) %> ago</td>
           <td><%= time_ago_in_words(a_child.updated_at) %> ago</td>
-          <td>
-            <a href="/children/<%= a_child.id %>" class="btn btn-primary">
+          <td> 
+         <a href="/children/<%= a_child.id %>" class="btn btn-primary">
               Show details
-            </a>
+            </a> 
+                    
           </td>
         </tr>
         <% end %>

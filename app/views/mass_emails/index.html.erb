@@ -48,8 +48,8 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Admin</th>
+            <th style="display: none;">ID</th>
+            <th style="display: none;">Admin</th>
             <th>Subject</th>
             <th>Context</th>
             <th>Sent at</th>
@@ -61,8 +61,8 @@
         <tbody>
           <% @list_of_mass_emails.each do |a_mass_email| %>
           <tr>
-            <td><%= a_mass_email.id %></td>
-            <td><%= a_mass_email.admin_id %></td>
+            <td style="display: none;"><%= a_mass_email.id %></td>
+            <td style="display: none;"><%= a_mass_email.admin_id %></td>
             <td><%= a_mass_email.subject %></td>
             <td><%= a_mass_email.context %></td>
             <td><%= a_mass_email.sent_at %></td>

@@ -43,7 +43,7 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th>ID</th>
+            <th style="display: none;">ID</th>
             <th>Child</th>
             <th>Check in time</th>
             <th>Check out time</th>
@@ -55,10 +55,11 @@
         <tbody>
           <% @list_of_attendance_records.each do |an_attendance_record| %>
           <tr>
-            <td><%= an_attendance_record.id %></td>
-            <td><%= an_attendance_record.child_id %></td>
+            <td style="display: none;"><%= an_attendance_record.id %></td>
+           <td style="display: none;"><%= an_attendance_record.child_id %></td>
             <td><%= an_attendance_record.check_in_time %></td>
-            <td><%= an_attendance_record.check_out_time %></td>
+            <td><%= an_attendance_record.check_in_time %></td>
+          
             <td><%= time_ago_in_words(an_attendance_record.created_at) %> ago</td>
             <td><%= time_ago_in_words(an_attendance_record.updated_at) %> ago</td>
             <td>
