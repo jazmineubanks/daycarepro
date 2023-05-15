@@ -43,7 +43,7 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th>ID</th>
+            <th style="display: none;">ID</th>
             <th>Child</th>
             <th>Image URL</th>
             <th>Description</th>
@@ -55,8 +55,8 @@
         <tbody>
           <% @list_of_images.each do |an_image| %>
           <tr>
-            <td><%= an_image.id %></td>
-            <td><%= an_image.child_id %></td>
+            <td style="display: none;"><%= an_image.id %></td>
+            <td style="display: none;"><%= an_image.child_id %></td>
             <td><%= an_image.image_url %></td>
             <td><%= an_image.description %></td>
             <td><%= time_ago_in_words(an_image.created_at) %> ago</td>

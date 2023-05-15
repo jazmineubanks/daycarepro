@@ -48,11 +48,11 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th>ID</th>
+            <th style="display: none;">ID</th>
             <th>Child</th>
-            <th>Admin</th>
+            <th style="display: none;">Admin</th>
             <th>Context</th>
-            <th>Submitted</th>
+            <th style="display: none;">Submitted</th>
             <th>Created at</th>
             <th>Updated at</th>
             <th></th>
@@ -61,11 +61,11 @@
         <tbody>
           <% @list_of_notes.each do |a_note| %>
           <tr>
-            <td><%= a_note.id %></td>
-            <td><%= a_note.child_id %></td>
-            <td><%= a_note.admin_id %></td>
-            <td><%= a_note.context %></td>
-            <td><%= a_note.submitted %></td>
+            <td style="display: none;"><%= a_note.id %></td>
+            <td style="display: none;"><%= a_note.child_id %></td>
+            <td style="display: none;"><%= a_note.admin_id %></td>
+            <td ><%= a_note.context %></td>
+            <td style="display: none;"><%= a_note.submitted %></td>
             <td><%= time_ago_in_words(a_note.created_at) %> ago</td>
             <td><%= time_ago_in_words(a_note.updated_at) %> ago</td>
             <td>
