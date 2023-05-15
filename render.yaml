@@ -14,7 +14,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: YOURAPPNAME
+          name: homedaycarepro
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
