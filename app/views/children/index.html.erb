@@ -14,80 +14,108 @@
       Add New Child
     </h2>
 
-    <form action="/insert_child" method="post">
-      <div class="mb-3">
-        <label for="first_name_box" class="form-label">
-          First name
-        </label>
-        <input type="text" id="first_name_box" name="query_first_name" class="form-control">
-      </div>
+    <!-- Button to trigger the modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addChildModal">
+      Add Child
+    </button>
 
-      <div class="mb-3">
-        <label for="last_name_box" class="form-label">
-          Last name
-        </label>
-        <input type="text" id="last_name_box" name="query_last_name" class="form-control">
-      </div>
+    <!-- Modal -->
+    <div class="modal fade" id="addChildModal" tabindex="-1" aria-labelledby="addChildModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addChildModalLabel">Add New Child</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="/insert_child" method="post" enctype="multipart/form-data">
+              <%= csrf_meta_tags %>
 
-      <div class="mb-3">
-        <label for="date_of_birth_box" class="form-label">
-          Date of birth
-        </label>
-        <input type="text" id="date_of_birth_box" name="query_date_of_birth" class="form-control">
-      </div>
+              <div class="mb-3">
+                <label for="first_name_box" class="form-label">First name</label>
+                <input type="text" id="first_name_box" name="child[first_name]" class="form-control">
+              </div>
 
-      <div class="mb-3">
-        <label for="parent_id_box" class="form-label">
-          Parent
-        </label>
-        <input type="text" id="parent_id_box" name="query_parent_id" class="form-control">
-      </div>
+              <div class="mb-3">
+                <label for="last_name_box" class="form-label">Last name</label>
+                <input type="text" id="last_name_box" name="child[last_name]" class="form-control">
+              </div>
 
-      <button type="submit" class="btn btn-primary">
-        Create child
-      </button>
-    </form>
+              <div class="mb-3">
+                <label for="date_of_birth_box" class="form-label">Date of birth</label>
+                <input type="text" id="date_of_birth_box" name="child[date_of_birth]" class="form-control">
+              </div>
+
+              <div class="mb-3">
+                <label for="parent_id_box" class="form-label">Parent</label>
+                <input type="text" id="parent_id_box" name="child[parent_id]" class="form-control">
+              </div>
+
+              <div class="mb-3">
+                <label for="images" class="form-label">Images</label>
+                <input type="file" id="images" name="child[images_attributes][][image]" multiple>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Create child</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+
 
 <hr>
 
 <div class="container">
-  <div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th style="display: none;">ID</th>
-          <th>First name</th>
-          <th>Last name</th>
-          <th>Date of birth</th>
-          <th style="display: none;">Parent</th>
-          <th>Created at</th>
-          <th>Updated at</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @list_of_children.each do |a_child| %>
-        <tr>
-          <td style="display: none;"><%= a_child.id %></td>
-          <td><%= a_child.first_name %></td>
-          <td><%= a_child.last_name %></td>
-          <td><%= a_child.date_of_birth %></td>
-          <td style="display: none;"><%= a_child.parent_id %></td>
-          <td><%= time_ago_in_words(a_child.created_at) %> ago</td>
-          <td><%= time_ago_in_words(a_child.updated_at) %> ago</td>
-          <td> 
-         <a href="/children/<%= a_child.id %>" class="btn btn-primary">
-              Show details
-            </a> 
-                    
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+  <div class="row">
+    <% @list_of_children.each do |a_child| %>
+    <div class="col-3">
+      <a href="/children/<%= a_child.id %>">
+        <div class="child-card">
+          <% if a_child.images.present? %>
+  <%= image_tag url_for(a_child.images.first), class: "child-image" %>
+          <% else %>
+            <div class="child-image-placeholder"></div>
+          <% end %>
+        </div>
+      </a>
+      <div class="child-details">
+        <p><strong>Name:</strong> <%= "#{a_child.first_name} #{a_child.last_name}" %></p>
+        <p><strong>Date of Birth:</strong> <%= a_child.date_of_birth %></p>
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>
 
 <hr>
+
+<style>
+.child-card {
+  width: 100%;
+  text-align: center;
+}
+
+.child-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.child-image-placeholder {
+  width: 100px;
+  height: 100px;
+  background-color: lightgray;
+  border-radius: 50%;
+}
+
+.child-details {
+  margin-top: 10px;
+  text-align: center;
+}
+
+</style>

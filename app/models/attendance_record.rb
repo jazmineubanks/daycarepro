@@ -10,5 +10,6 @@
 #  child_id       :integer
 #
 class AttendanceRecord < ApplicationRecord
-  belongs_to(:child, { :required => true, :class_name => "Child", :foreign_key => "child_id" })
+  belongs_to :child
+  belongs_to :image
 end

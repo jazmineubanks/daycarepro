@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2023_05_11_171102) do
 
   create_table "attendance_records", force: :cascade do |t|
     t.integer "child_id"
+    t.integer "image_id" # Add this line
     t.datetime "check_in_time"
     t.datetime "check_out_time"
     t.datetime "created_at", precision: 6, null: false

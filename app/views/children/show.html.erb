@@ -31,6 +31,17 @@
 
         <dt class="col-sm-3">Updated at</dt>
         <dd class="col-sm-9"><%= time_ago_in_words(@the_child.updated_at) %> ago</dd>
+
+        <dt class="col-sm-3">Picture</dt>
+        <dd class="col-sm-9">
+          <% if @the_child.images.present? %>
+            <% @the_child.images.each do |image| %>
+              <%= image_tag(image.image_url, alt: "Child Picture", class: "img-fluid") %>
+            <% end %>
+          <% else %>
+            <p>No picture available</p>
+          <% end %>
+        </dd>
       </dl>
     </div>
   </div>
