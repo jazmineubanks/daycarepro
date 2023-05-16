@@ -8,10 +8,10 @@
           <a href="/children" class="btn btn-primary">Go back</a>
         </div>
 
-        <div class="col-6">
-          <%= link_to "Delete child", delete_child_path(@the_child), method: :delete, data: { confirm: "Are you sure you want to delete this child?" }, class: "btn btn-danger float-end" %>
-        </div>
-      </div>
+       <div class="col-6">
+  <%= button_to "Delete child", delete_child_path(@the_child), method: :delete, data: { confirm: "Are you sure you want to delete this child?" }, class: "btn btn-danger float-end" %>
+</div>
+
 
       <dl class="row mt-4">
         <dt class="col-sm-3">First name</dt>

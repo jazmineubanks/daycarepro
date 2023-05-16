@@ -43,10 +43,14 @@ class ChildrenController < ApplicationController
   
   def destroy
     the_child = Child.find(params[:id])
-    the_child.destroy
-  
-    redirect_to children_path, notice: "Child deleted successfully."
+    if the_child.destroy
+      redirect_to children_path, notice: "Child deleted successfully."
+    else
+      flash[:error] = "Failed to delete child."
+      redirect_to children_path
+    end
   end
+  
 
   private
 

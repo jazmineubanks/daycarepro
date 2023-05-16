@@ -14,6 +14,9 @@ gem 'sprockets', '< 4'
 gem 'sassc-rails'
 gem 'faker'
 gem 'devise'
+# Gemfile
+gem 'rails-ujs', '~> 5'
+
 
 
 group :development do
