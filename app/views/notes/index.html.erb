@@ -11,7 +11,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2>Create New Note?</h2>
+      <h2>Create New Note</h2>
 
       <form action="/insert_note" method="post">
         <div class="mb-3">
@@ -34,7 +34,7 @@
           <label class="form-check-label" for="submitted_box">Submitted</label>
         </div>
 
-        <button type="submit" class="btn btn-primary">Create note</button>
+        <button type="submit" class="btn btn-primary">Create Note</button>
       </form>
     </div>
   </div>
@@ -64,12 +64,12 @@
             <td style="display: none;"><%= a_note.id %></td>
             <td style="display: none;"><%= a_note.child_id %></td>
             <td style="display: none;"><%= a_note.admin_id %></td>
-            <td ><%= a_note.context %></td>
+            <td><%= a_note.context %></td>
             <td style="display: none;"><%= a_note.submitted %></td>
             <td><%= time_ago_in_words(a_note.created_at) %> ago</td>
             <td><%= time_ago_in_words(a_note.updated_at) %> ago</td>
             <td>
-              <a href="/notes/<%= a_note.id %>">Show details</a>
+              <a href="/notes/<%= a_note.id %>">Show Details</a>
             </td>
           </tr>
           <% end %>
