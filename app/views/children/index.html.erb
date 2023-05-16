@@ -17,6 +17,8 @@
       Create
     </button>
 
+    
+
     <!-- Modal -->
     <div class="modal fade" id="addChildModal" tabindex="-1" aria-labelledby="addChildModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -90,8 +92,13 @@
       </a>
       <div class="child-details">
         <p><strong></strong> <%= "#{a_child.first_name} #{a_child.last_name}" %></p>
-        
+        <div class="container">
+  <div>
+    <%= link_to 'Add Attendance', '#addAttendanceModal', class: "btn btn-primary", data: { toggle: "modal" } %>
+  </div>
+</div>
       </div>
+      
     </div>
     <% end %>
   </div>

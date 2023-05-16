@@ -1,112 +1,108 @@
 <!DOCTYPE html>
 <html>
-    <head>
-  
-<title>Home Daycare Pro</title>
-<%= csrf_meta_tags %>
+<head>
+  <title>Home Daycare Pro</title>
+  <%= csrf_meta_tags %>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+</head>
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<%= csp_meta_tag %>
-
-<%= stylesheet_link_tag 'application', media: 'all' %>
-
-
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-
-  </head>
-
-  <body>
-  <nav class="navbar navbar-expand-lg navbar-light ">
+<body>
+<nav class="navbar navbar-expand-lg navbar-light ">
   <%= link_to root_path, class: "navbar-brand" do %>
-  <%= image_tag 'logo.jpg', style: "height: 70px;" %>
-<% end %>
-<a class="navbar-brand" href="/">Home</a>
+    <%= image_tag 'logo.jpg', style: "height: 70px;" %>
+  <% end %>
+  <a class="navbar-brand btn btn-primary" href="/">Home</a>
+
   <div class="collapse navbar-collapse">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto justify-content-between">
       <li class="nav-item">
-        <a class="nav-link" href="<%= mass_emails_path %>">Mass Emails</a>
+        <%= link_to 'Mass Emails', mass_emails_path, class: "btn btn-primary" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<%= attendance_records_path %>">Attendance Records</a>
+        <%= link_to 'Attendance Records', attendance_records_path, class: "btn btn-primary" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<%= notes_path %>">Notes</a>
+        <%= link_to 'Notes', notes_path, class: "btn btn-primary" %>
       </li>
-      
-    
-     
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to 'Edit profile', edit_user_registration_path, class: "nav-link" %>
+          <%= link_to 'Edit profile', edit_user_registration_path, class: "btn btn-primary" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav-link" %>
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to 'Sign up', new_user_registration_path, class: "nav-link" %>
+          <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-primary" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Login', new_user_session_path, class: "nav-link" %>
+          <%= link_to 'Login', new_user_session_path, class: "btn btn-primary" %>
         </li>
       <% end %>
     </ul>
   </div>
 </nav>
 
-    <%= yield %>
-  </body>
+<%= yield %>
+
+</body>
 </html>
-
 <style>
-      /* Color palette */
-      :root {
-        --primary-color: #fffffe;
-        --secondary-color: #994ff3;
-        --tertiary-color: #2cb67d;
-        --quaternary-color: #181818;
-      }
+/* Color palette */
+:root {
+  --primary-color: #d1d1e9;
+  --secondary-color: #994ff3;
+  --tertiary-color: #2cb67d;
+  --quaternary-color: #181818;
+}
 
-      body {
-        background-color: var(--primary-color);
-        color: var(--quaternary-color);
-      }
+body {
+  background-color: var(--primary-color);
+  color: var(--quaternary-color);
+}
 
-      .navbar {
+.navbar {
   background-color: white;
 }
 
-
-      .navbar-brand img {
+.navbar-brand img {
   height: 70px; /* Adjust this value to your preference */
 }
 
-      .navbar-brand:hover,
-      .nav-link:hover {
-        color: var(--tertiary-color);
-      }
-
-      .navbar-collapse {
-        justify-content: flex-end;
-      }
-
-      .nav-item {
-        margin-right: 10px;
-      }
-
-      .btn {
-      background-color: #4fc4cf;
-      color: #181818;
-      padding: 5px 12px;
-      font-size: 18px;
-      margin: 8px 0;
+.navbar-brand:hover,
+.nav-link:hover {
+  color: var(--tertiary-color);
 }
-    </style>
+
+.navbar-collapse {
+  justify-content: flex-end;
+}
+
+.nav-item {
+  margin-right: 10px;
+}
+
+.nav-link {
+  padding: 5px 12px;
+  font-size: 18px;
+}
+
+.btn-primary {
+  background-color: #ffc6c7;
+  color: #181818;
+  padding: 5px 12px;
+  font-size: 18px;
+  margin: 8px 0;
+}
+</style>
+
