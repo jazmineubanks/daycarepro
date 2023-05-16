@@ -25,7 +25,10 @@
 
   <body>
   <nav class="navbar navbar-expand-lg navbar-light ">
-  <a class="navbar-brand" href="/">Home</a>
+  <%= link_to root_path, class: "navbar-brand" do %>
+  <%= image_tag 'logo.jpg', style: "height: 70px;" %>
+<% end %>
+<a class="navbar-brand" href="/">Home</a>
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
@@ -37,15 +40,9 @@
       <li class="nav-item">
         <a class="nav-link" href="<%= notes_path %>">Notes</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= images_path %>">Images</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= children_path %>">Children</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= users_path %>">Users</a>
-      </li>
+      
+    
+     
       <% if user_signed_in? %>
         <li class="nav-item">
           <%= link_to 'Edit profile', edit_user_registration_path, class: "nav-link" %>
@@ -84,13 +81,13 @@
       }
 
       .navbar {
-        background-color: var(--secondary-color);
-      }
+  background-color: white;
+}
 
-      .navbar-brand,
-      .nav-link {
-        color: var(--quaternary-color);
-      }
+
+      .navbar-brand img {
+  height: 70px; /* Adjust this value to your preference */
+}
 
       .navbar-brand:hover,
       .nav-link:hover {
