@@ -52,9 +52,11 @@
               </div>
 
               <div class="mb-3">
-                <label for="images" class="form-label">Images</label>
-                <input type="file" id="images" name="child[images_attributes][][image]" multiple>
-              </div>
+  <label for="images" class="form-label">Images</label>
+  <input type="file" id="images" name="child[images_attributes][][image]" multiple>
+
+
+</div>
 
               <button type="submit" class="btn btn-primary">Create child</button>
             </form>
@@ -76,7 +78,13 @@
       <a href="/children/<%= a_child.id %>">
         <div class="child-card">
           <% if a_child.images.present? %>
-  <%= image_tag url_for(a_child.images.first), class: "child-image" %>
+           <% unless a_child.images.empty? %>
+  <% if a_child.images.first.image.attached? %>
+    <%= image_tag a_child.images.first.image, class: "child-image rounded-circle" %>
+  <% end %>
+<% end %>
+
+
           <% else %>
             <div class="child-image-placeholder"></div>
           <% end %>
@@ -90,6 +98,7 @@
     <% end %>
   </div>
 </div>
+
 
 <hr>
 
@@ -116,6 +125,10 @@
 .child-details {
   margin-top: 10px;
   text-align: center;
+}
+
+.child-image.rounded-circle {
+  border-radius: 50%;
 }
 
 </style>

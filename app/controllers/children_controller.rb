@@ -16,17 +16,20 @@ class ChildrenController < ApplicationController
   
     if the_child.save
       # Process the uploaded images
-      if params[:child][:images].present?
-        params[:child][:images].each do |image|
-          the_child.images.attach(image)
+      if params[:child][:images_attributes].present?
+        params[:child][:images_attributes].each do |image_attribute|
+          the_child.images.build(image: image_attribute[:image])
         end
       end
+      
+      
   
       redirect_to children_path, notice: "Child created successfully."
     else
       redirect_to children_path, alert: the_child.errors.full_messages.to_sentence
     end
   end
+  
   
   def update
     the_child = Child.find(params[:id])
@@ -48,8 +51,9 @@ class ChildrenController < ApplicationController
   private
 
   def child_params
-    params.require(:child).permit(:first_name, :last_name, :date_of_birth, :parent_id, images: [])
+    params.require(:child).permit(:first_name, :last_name, :date_of_birth, :parent_id, images_attributes: [:image])
   end
+  
   
   
   def image_params

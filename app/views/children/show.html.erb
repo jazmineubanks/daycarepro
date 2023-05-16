@@ -35,9 +35,16 @@
         <dt class="col-sm-3">Picture</dt>
         <dd class="col-sm-9">
           <% if @the_child.images.present? %>
-            <% @the_child.images.each do |image| %>
-              <%= image_tag(image.image_url, alt: "Child Picture", class: "img-fluid") %>
-            <% end %>
+            
+             <% @the_child.images.each do |image| %>
+  <% if image.image.attached? %>
+    <%= image_tag image.image, alt: "Child Picture", class: "img-fluid" %>
+  <% end %>
+<% end %>
+
+
+
+           
           <% else %>
             <p>No picture available</p>
           <% end %>
