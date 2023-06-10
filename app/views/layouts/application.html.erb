@@ -12,6 +12,64 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag 'application', media: 'all' %>
+  <style>
+    /* Color palette */
+    :root {
+      --primary-color: #d1d1e9;
+      --secondary-color: #994ff3;
+      --tertiary-color: #2cb67d;
+      --quaternary-color: #181818;
+    }
+
+    body {
+      background-color: var(--primary-color);
+      color: var(--quaternary-color);
+    }
+
+    .navbar {
+      background-color: var(--secondary-color);
+    }
+
+    .navbar-brand img {
+      height: 70px; /* Adjust this value to your preference */
+    }
+
+    .navbar-brand,
+    .nav-link {
+      color: white;
+    }
+
+    .navbar-brand:hover,
+    .nav-link:hover {
+      color: var(--tertiary-color);
+    }
+
+    .navbar-collapse {
+      justify-content: flex-end;
+    }
+
+    .nav-item {
+      margin-right: 10px;
+    }
+
+    .nav-link {
+      padding: 5px 12px;
+      font-size: 18px;
+    }
+
+    .btn-primary {
+      background-color: var(--tertiary-color);
+      color: var(--quaternary-color);
+      padding: 6px 12px;
+      font-size: 18px;
+      margin: 8px 0;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--secondary-color);
+    }
+  </style>
 </head>
 
 <body>
@@ -19,7 +77,10 @@
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag 'logo.jpg', style: "height: 70px;" %>
   <% end %>
-  <a class="navbar-brand btn btn-primary" href="/">Home</a>
+  <a class="navbar-brand btn btn-primary" href="/">
+  <i class="fas fa-home"></i> Home
+</a>
+
 
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto justify-content-between">
@@ -69,52 +130,3 @@
 
 </body>
 </html>
-
-<style>
-/* Color palette */
-:root {
-  --primary-color: #d1d1e9;
-  --secondary-color: #994ff3;
-  --tertiary-color: #2cb67d;
-  --quaternary-color: #181818;
-}
-
-body {
-  background-color: var(--primary-color);
-  color: var(--quaternary-color);
-}
-
-.navbar {
-  background-color: white;
-}
-
-.navbar-brand img {
-  height: 70px; /* Adjust this value to your preference */
-}
-
-.navbar-brand:hover,
-.nav-link:hover {
-  color: var(--tertiary-color);
-}
-
-.navbar-collapse {
-  justify-content: flex-end;
-}
-
-.nav-item {
-  margin-right: 10px;
-}
-
-.nav-link {
-  padding: 5px 12px;
-  font-size: 18px;
-}
-
-.btn-primary {
-  background-color: #ffc6c7;
-  color: #181818;
-  padding: 6px 12px;
-  font-size: 18px;
-  margin: 8px 0;
-}
-</style>
