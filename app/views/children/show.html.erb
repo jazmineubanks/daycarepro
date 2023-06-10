@@ -1,50 +1,45 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h1>Child #<%= @the_child.id %> details</h1>
+      <h1 class="fw-bold">Child #<%= @the_child.id %> Details</h1>
 
       <div class="row">
         <div class="col-6">
-          <a href="/children" class="btn btn-primary">Go back</a>
+          <a href="/children" class="btn btn-primary">Go Back</a>
         </div>
 
-       <div class="col-6">
-  <%= button_to "Delete child", delete_child_path(@the_child), method: :delete, data: { confirm: "Are you sure you want to delete this child?" }, class: "btn btn-danger float-end" %>
-</div>
-
+        <div class="col-6 text-end">
+          <%= button_to "Delete Record", delete_child_path(@the_child), method: :delete, data: { confirm: "Are you sure you want to delete this child?" }, class: "btn btn-danger" %>
+        </div>
+      </div>
 
       <dl class="row mt-4">
-        <dt class="col-sm-3">First name</dt>
+        <dt class="col-sm-3 fw-bold">First Name</dt>
         <dd class="col-sm-9"><%= @the_child.first_name %></dd>
 
-        <dt class="col-sm-3">Last name</dt>
+        <dt class="col-sm-3 fw-bold">Last Name</dt>
         <dd class="col-sm-9"><%= @the_child.last_name %></dd>
 
-        <dt class="col-sm-3">Date of birth</dt>
+        <dt class="col-sm-3 fw-bold">Date of Birth</dt>
         <dd class="col-sm-9"><%= @the_child.date_of_birth %></dd>
 
-        <dt class="col-sm-3">Parent</dt>
+        <dt class="col-sm-3 fw-bold">Parent</dt>
         <dd class="col-sm-9"><%= @the_child.parent_id %></dd>
 
-        <dt class="col-sm-3">Created at</dt>
+        <dt class="col-sm-3 fw-bold">Created At</dt>
         <dd class="col-sm-9"><%= time_ago_in_words(@the_child.created_at) %> ago</dd>
 
-        <dt class="col-sm-3">Updated at</dt>
+        <dt class="col-sm-3 fw-bold">Updated At</dt>
         <dd class="col-sm-9"><%= time_ago_in_words(@the_child.updated_at) %> ago</dd>
 
-        <dt class="col-sm-3">Picture</dt>
+        <dt class="col-sm-3 fw-bold">Picture</dt>
         <dd class="col-sm-9">
           <% if @the_child.images.present? %>
-            
-             <% @the_child.images.each do |image| %>
-  <% if image.image.attached? %>
-    <%= image_tag image.image, alt: "Child Picture", class: "img-fluid" %>
-  <% end %>
-<% end %>
-
-
-
-           
+            <% @the_child.images.each do |image| %>
+              <% if image.image.attached? %>
+                <%= image_tag image.image, alt: "Child Picture", class: "img-fluid rounded" %>
+              <% end %>
+            <% end %>
           <% else %>
             <p>No picture available</p>
           <% end %>
@@ -59,33 +54,33 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h2>Edit child</h2>
+      <h2 class="fw-bold">Edit Record</h2>
 
       <form action="<%= modify_child_path(@the_child) %>" method="post">
         <%= csrf_meta_tags %>
         <input type="hidden" name="_method" value="patch">
 
         <div class="mb-3">
-          <label for="first_name_box" class="form-label">First name</label>
+          <label for="first_name_box" class="form-label fw-bold">First Name</label>
           <input type="text" id="first_name_box" name="child[first_name]" value="<%= @the_child.first_name %>" class="form-control">
         </div>
 
         <div class="mb-3">
-          <label for="last_name_box" class="form-label">Last name</label>
+          <label for="last_name_box" class="form-label fw-bold">Last Name</label>
           <input type="text" id="last_name_box" name="child[last_name]" value="<%= @the_child.last_name %>" class="form-control">
         </div>
 
         <div class="mb-3">
-          <label for="date_of_birth_box" class="form-label">Date of birth</label>
+          <label for="date_of_birth_box" class="form-label fw-bold">Date of Birth</label>
           <input type="text" id="date_of_birth_box" name="child[date_of_birth]" value="<%= @the_child.date_of_birth %>" class="form-control">
         </div>
 
         <div class="mb-3">
-          <label for="parent_id_box" class="form-label">Parent</label>
+          <label for="parent_id_box" class="form-label fw-bold">Parent</label>
           <input type="text" id="parent_id_box" name="child[parent_id]" value="<%= @the_child.parent_id %>" class="form-control">
         </div>
 
-        <button type="submit" class="btn btn-primary">Update child</button>
+        <button type="submit" class="btn btn-primary">Update Child</button>
       </form>
     </div>
   </div>
