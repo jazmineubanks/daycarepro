@@ -1,60 +1,128 @@
 <div class="container">
-<hr>
+  <hr>
 
-<div class="container">
-  <div class="card">
-    <div class="card-header">
-      <h2 class="card-title">Add New Child</h2>
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Add New Child</h2>
+      </div>
+      <div class="card-body">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addChildModal">Create</button>
+      </div>
     </div>
-    <div class="card-body">
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addChildModal">Create</button>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="addChildModal" tabindex="-1" aria-labelledby="addChildModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addChildModalLabel">Add New Child</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/insert_child" method="post" enctype="multipart/form-data">
+            <%= csrf_meta_tags %>
+
+            <div class="mb-3">
+              <label for="first_name_box" class="form-label">First name</label>
+              <input type="text" id="first_name_box" name="child[first_name]" class="form-control">
+            </div>
+
+            <div class="mb-3">
+              <label for="last_name_box" class="form-label">Last name</label>
+              <input type="text" id="last_name_box" name="child[last_name]" class="form-control">
+            </div>
+
+            <div class="mb-3">
+              <label for="date_of_birth_box" class="form-label">Date of birth</label>
+              <input type="text" id="date_of_birth_box" name="child[date_of_birth]" class="form-control">
+            </div>
+
+            <div class="mb-3">
+              <label for="parent_id_box" class="form-label">Parent</label>
+              <input type="text" id="parent_id_box" name="child[parent_id]" class="form-control">
+            </div>
+
+            <div class="mb-3">
+              <label for="images" class="form-label">Images</label>
+              <input type="file" id="images" name="child[images_attributes][][image]" multiple>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create child</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="container">
+    <div class="row">
+      <% @list_of_children.each do |a_child| %>
+        <div class="col-3">
+          <a href="/children/<%= a_child.id %>">
+            <div class="child-card">
+              <% if a_child.images.present? %>
+                <% unless a_child.images.empty? %>
+                  <% if a_child.images.first.image.attached? %>
+                    <%= image_tag a_child.images.first.image, class: "child-image rounded-circle" %>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <div class="child-image-placeholder"></div>
+              <% end %>
+            </div>
+          </a>
+          <div class="child-details">
+                        <p><strong><%= "#{a_child.first_name} #{a_child.last_name}" %></strong></p>
+            <div class="container">
+              <div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAttendanceModal-<%= a_child.id %>">Add Attendance</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Attendance Modal for Child -->
+        <div class="modal fade" id="addAttendanceModal-<%= a_child.id %>" tabindex="-1" aria-labelledby="addAttendanceModalLabel-<%= a_child.id %>" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addAttendanceModalLabel-<%= a_child.id %>">Add Attendance</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="/insert_attendance_record" method="post">
+                  <div class="mb-3">
+                    <label for="child_id_box" class="form-label">Child</label>
+                    <input type="text" class="form-control" id="child_id_box" name="query_child_id" value="<%= a_child.id %>" readonly>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="check_in_time_box" class="form-label">Check in time</label>
+                    <input type="datetime-local" class="form-control" id="check_in_time_box" name="query_check_in_time">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="check_out_time_box" class="form-label">Check out time</label>
+                    <input type="datetime-local" class="form-control" id="check_out_time_box" name="query_check_out_time">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Create attendance record</button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="addChildModal" tabindex="-1" aria-labelledby="addChildModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addChildModalLabel">Add New Child</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="/insert_child" method="post" enctype="multipart/form-data">
-          <%= csrf_meta_tags %>
 
-          <div class="mb-3">
-            <label for="first_name_box" class="form-label">First name</label>
-            <input type="text" id="first_name_box" name="child[first_name]" class="form-control">
-          </div>
-
-          <div class="mb-3">
-            <label for="last_name_box" class="form-label">Last name</label>
-            <input type="text" id="last_name_box" name="child[last_name]" class="form-control">
-          </div>
-
-          <div class="mb-3">
-            <label for="date_of_birth_box" class="form-label">Date of birth</label>
-            <input type="text" id="date_of_birth_box" name="child[date_of_birth]" class="form-control">
-          </div>
-
-          <div class="mb-3">
-            <label for="parent_id_box" class="form-label">Parent</label>
-            <input type="text" id="parent_id_box" name="child[parent_id]" class="form-control">
-          </div>
-
-          <div class="mb-3">
-            <label for="images" class="form-label">Images</label>
-            <input type="file" id="images" name="child[images_attributes][][image]" multiple>
-          </div>
-
-          <button type="submit" class="btn btn-primary">Create child</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 
