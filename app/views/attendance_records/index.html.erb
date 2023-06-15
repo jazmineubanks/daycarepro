@@ -6,46 +6,27 @@
           <h1>Attendance Records</h1>
         </div>
         <div class="card-body">
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAttendanceModal">
-            Add Attendance
-          </button>
-          <hr>
-          <!-- Modal -->
-          <div class="modal fade" id="addAttendanceModal" tabindex="-1" aria-labelledby="addAttendanceModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="addAttendanceModalLabel">Add Attendance</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <!-- Your form goes here -->
-                  <form action="/insert_attendance_record" method="post">
-                    <div class="mb-3">
-                      <label for="child_id_box" class="form-label">Child</label>
-                      <input type="text" class="form-control" id="child_id_box" name="query_child_id">
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="check_in_time_box" class="form-label">Check in time</label>
-                      <input type="datetime-local" class="form-control" id="check_in_time_box" name="query_check_in_time">
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="check_out_time_box" class="form-label">Check out time</label>
-                      <input type="datetime-local" class="form-control" id="check_out_time_box" name="query_check_out_time">
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Create attendance record</button>
-                </div>
-              </div>
+          <form action="/insert_attendance_record" method="post">
+            <div class="mb-3">
+              <label for="child_id_box" class="form-label">Child</label>
+              <input type="text" class="form-control" id="child_id_box" name="query_child_id">
             </div>
-          </div>
+
+            <div class="mb-3">
+              <label for="check_in_time_box" class="form-label">Check in time</label>
+              <input type="datetime-local" class="form-control" id="check_in_time_box" name="query_check_in_time">
+            </div>
+
+            <div class="mb-3">
+              <label for="check_out_time_box" class="form-label">Check out time</label>
+              <input type="datetime-local" class="form-control" id="check_out_time_box" name="query_check_out_time">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create attendance record</button>
+          </form>
+
           <hr>
+
           <div class="container">
             <div class="row">
               <div class="col">
@@ -63,24 +44,26 @@
                   </thead>
                   <tbody>
                     <% @list_of_attendance_records.each do |an_attendance_record| %>
-                    <tr>
-                      <td style="display: none;"><%= an_attendance_record.id %></td>
-                      <td style="display: none;"><%= an_attendance_record.child_id %></td>
-                      <td><%= an_attendance_record.check_in_time %></td>
-                      <td><%= an_attendance_record.check_in_time %></td>
-                      <td><%= time_ago_in_words(an_attendance_record.created_at) %> ago</td>
-                      <td><%= time_ago_in_words(an_attendance_record.updated_at) %> ago</td>
-                      <td>
-                        <a href="/attendance_records/<%= an_attendance_record.id %>">Show details</a>
-                      </td>
-                    </tr>
-                  <% end %>
+                      <tr>
+                        <td style="display: none;"><%= an_attendance_record.id %></td>
+                        <td style="display: none;"><%= an_attendance_record.child_id %></td>
+                        <td><%= an_attendance_record.check_in_time %></td>
+                        <td><%= an_attendance_record.check_in_time %></td>
+                        <td><%= time_ago_in_words(an_attendance_record.created_at) %> ago</td>
+                        <td><%= time_ago_in_words(an_attendance_record.updated_at) %> ago</td>
+                        <td>
+                          <a href="/attendance_records/<%= an_attendance_record.id %>">Show details</a>
+                        </td>
+                      </tr>
+                    <% end %>
                   </tbody>
                 </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </div>
 <hr>
